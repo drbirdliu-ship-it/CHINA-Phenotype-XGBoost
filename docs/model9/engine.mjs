@@ -1,4 +1,4 @@
-import { MODEL, METRICS } from './model.mjs';
+import { MODEL, METRICS } from './model.mjs?v=2026-09-26-age-corrected';
 
 export const FEATURES = MODEL.features;
 export const LABELS = MODEL.classes;
@@ -16,6 +16,7 @@ export function validateInputs(input) {
       throw new Error(`Enter a valid number for ${name}.`);
     }
     if (value < 0) throw new Error(`${name} cannot be negative.`);
+    if (name === 'Age' && value < 18) throw new Error('This model is for adults aged 18 years and older.');
     if (name === 'SEX' && value !== 0 && value !== 1) throw new Error('Select Male (0) or Female (1) for sex.');
     return f32(value);
   });

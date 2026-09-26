@@ -8,3 +8,8 @@ data/
 private_data/
 retrained_models/
 validation/local_parity.json
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.parquet

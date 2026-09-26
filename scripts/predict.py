@@ -21,6 +21,8 @@ for name in booster.feature_names:
     if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
         raise ValueError(f"Missing or invalid predictor: {name}")
     row[name] = float(value)
+if row["Age"] < 18:
+    raise ValueError("This model is for adults aged 18 years and older.")
 if row["SEX"] not in (0, 1):
     raise ValueError("SEX must use 0=male and 1=female.")
 if "LVEF" in row and row["LVEF"] > 100:

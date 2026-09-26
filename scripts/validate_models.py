@@ -11,6 +11,7 @@ import subprocess
 import numpy as np
 import pandas as pd
 import xgboost as xgb
+from data_io import read_data
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
@@ -18,7 +19,7 @@ parser.add_argument("--data", type=Path)
 parser.add_argument("--output", type=Path)
 args = parser.parse_args()
 examples = json.loads((ROOT / "examples/predictors.json").read_text())
-frame = pd.read_csv(args.data, sep="\t") if args.data else None
+frame = read_data(args.data) if args.data else None
 results = {}
 for variant in ("model11", "model9"):
     model_path = ROOT / "models" / variant / "xgboost_model.json"

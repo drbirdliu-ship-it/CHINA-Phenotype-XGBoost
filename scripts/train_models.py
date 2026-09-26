@@ -1,4 +1,4 @@
-"""Reproduce either or both models from the study's tab-separated data."""
+"""Reproduce either or both models from authorized corrected XLSX, CSV or TSV data."""
 from __future__ import annotations
 import argparse
 import hashlib
@@ -6,9 +6,10 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report, confusion_matrix, log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
+from data_io import read_data
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = json.loads((ROOT / "model_config.json").read_text())
@@ -20,7 +21,7 @@ def main():
     parser.add_argument("--model", choices=["model11", "model9", "both"], default="both")
     parser.add_argument("--output", type=Path, default=ROOT / "retrained_models")
     args = parser.parse_args()
-    frame = pd.read_csv(args.data, sep="\t")
+    frame = read_data(args.data)
     target = frame[CONFIG["target_column"]].to_numpy(dtype=float)
     if not np.isfinite(target).all() or not set(target).issubset({1, 2, 3, 4}) or len(set(target)) != 4:
         raise ValueError("Expected the four outcome codes 1, 2, 3, 4.")
@@ -43,15 +44,23 @@ def main():
         # There is no early stopping or hyperparameter selection on this test set.
         model.fit(x_train, y_train, eval_set=[(x_test, y_test)], verbose=False)
         pred = model.predict(x_test)
+        probabilities = model.predict_proba(x_test)
         destination = args.output / variant
         destination.mkdir(parents=True, exist_ok=True)
         model_path = destination / "xgboost_model.json"
         model.get_booster().save_model(model_path)
         report = {
+            "model_version": CONFIG["model_version"],
+            "data_revision": "Age-corrected cohort, 2026-09-26",
+            "row_order": "As supplied in the corrected worksheet; not the previous release order.",
+            "deployment_fit": "Training partition only; test records excluded from model fitting.",
             "features": features, "target_column": CONFIG["target_column"],
             "class_mapping": CONFIG["class_mapping"], "sex_mapping": CONFIG["sex_mapping"],
             "sample_size": len(frame), "train_size": len(x_train), "test_size": len(x_test),
             "test_accuracy": float(accuracy_score(y_test, pred)),
+            "test_balanced_accuracy": float(balanced_accuracy_score(y_test, pred)),
+            "test_log_loss": float(log_loss(y_test, probabilities)),
+            "test_macro_roc_auc_ovr": float(roc_auc_score(y_test, probabilities, multi_class="ovr", average="macro")),
             "classification_report": classification_report(y_test, pred, target_names=["α", "β", "γ", "δ"], output_dict=True, zero_division=0),
             "confusion_matrix": confusion_matrix(y_test, pred, labels=[0, 1, 2, 3]).tolist(),
             "feature_ranges": {name: {"min": float(x[name].min()), "max": float(x[name].max())} for name in features},

@@ -1,8 +1,18 @@
-# 两套 CHINA 分型模型：公开代码准备包
+# 两套 CHINA 分型模型：年龄修正后的更新版
 
-本包包含原紫色 11 变量模型和天蓝色 9 变量模型的网页代码、已训练模型、训练和验证脚本。
+当前模型版本：`2026-09-26-age-corrected`。之前的模型权重已作废。
+
+本包包含紫色 11 变量模型和天蓝色 9 变量模型的网页代码、已训练模型、训练和验证脚本。
 GitHub 仓库：https://github.com/drbirdliu-ship-it/CHINA-Phenotype-XGBoost
 作者、版权持有者、许可证和 Zenodo DOI 信息待补充。`publication/` 中的文件仅为未启用模板，尚未发布正式软件 Release 或创建 Zenodo 归档。
+
+## 公开网页
+
+- 11变量紫色版：https://china-phenotype-xgboost.christopherleenmu.chatgpt.site
+- 9变量天蓝色版：https://china-phenotype-9.christopherleenmu.chatgpt.site
+
+原网址保持不变，线上模型已替换。已安装的离线应用需要联网重开，确认出现“Updated 26 September 2026”。
+GitHub 历史提交仅保留用于追溯，不应使用旧模型继续分析。
 
 ## 先试运行
 
@@ -52,8 +62,20 @@ Zenodo DOI 对应代码存档，网页运行地址仍需 GitHub Pages、现有�
 
 | 模型 | 预测变量数 | 训练集 | 相同测试集 | 测试准确率 |
 | --- | ---: | ---: | ---: | ---: |
-| 紫色版 | 11 | 2466 | 617 | 77.5% |
-| 天蓝色版 | 9 | 2466 | 617 | 66.9% |
+| 紫色版 | 11 | 2466 | 617 | 76.5% |
+| 天蓝色版 | 9 | 2466 | 617 | 65.6% |
 
 编码：SEX 0=Male，1=Female；phenotyoe 1=α，2=β，3=γ，4=δ。
 以上为内部留出测试结果，不代表已完成外部验证。
+
+## 数据修正和重复训练
+
+按病例 ID 对齐后，仅6条年龄变化，其他预测变量和分型标签不变。当前3,083例，年龄18–84岁，无缺失值。
+两模型仍用固定参数和分层80/20划分（随机种子20260925），部署模型只拟合2,466例训练记录。
+新Excel行顺序改变，因此本次617例测试集与旧版成员不同，准确率差异不能全部归因于年龄修正。
+
+```sh
+python scripts/train_models.py --data /path/to/corrected-study-data.xlsx --model both
+```
+
+程序读取第一张工作表并保留行顺序，也支持CSV和制表符文本。患者数据不上传至公共仓库。

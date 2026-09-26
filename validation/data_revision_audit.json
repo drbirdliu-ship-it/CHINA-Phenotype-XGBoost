@@ -1,0 +1,32 @@
+{
+  "model_version": "2026-09-26-age-corrected",
+  "sample_size": 3083,
+  "age_min": 18.0,
+  "age_max": 84.0,
+  "age_below_18": 0,
+  "missing_values": 0,
+  "same_unique_ids": true,
+  "source_row_order_changed": true,
+  "id_aligned_changed_cells": {
+    "Glucose": 0,
+    "PaCO2": 0,
+    "Albumin": 0,
+    "Platelet": 0,
+    "Leukocyte": 0,
+    "Age": 6,
+    "BMI": 0,
+    "MAP": 0,
+    "LVEDD": 0,
+    "LVEF": 0,
+    "SEX": 0,
+    "phenotyoe": 0
+  },
+  "class_counts": {
+    "1": 767,
+    "2": 734,
+    "3": 572,
+    "4": 1010
+  },
+  "source_data_sha256": "072a012a5e5978e20ecd5b7935c4fdbe5001a6e220b69332175d01a9a59cee4a",
+  "split_policy": "80/20 stratified split, seed 20260925, corrected worksheet row order; same split for both new models, different subjects from the previous release."
+}

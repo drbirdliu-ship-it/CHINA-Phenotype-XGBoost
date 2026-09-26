@@ -1,5 +1,17 @@
 # Manuscript wording — complete only after publication
 
+## Verified current resources
+
+- GitHub: https://github.com/drbirdliu-ship-it/CHINA-Phenotype-XGBoost
+- Model revision: `2026-09-26-age-corrected` (not a formal Release tag).
+- 11 predictors: https://china-phenotype-xgboost.christopherleenmu.chatgpt.site
+- 9 predictors: https://china-phenotype-9.christopherleenmu.chatgpt.site
+
+The two calculators have been retrained after the age correction. Cite the new
+commit and its actual subsequent archive DOI when available. The previous model
+weights and their internal accuracy values are superseded. A Zenodo DOI has not
+yet been created. The statement below remains a template until that archive exists.
+
 Replace every bracketed item with verified information. This wording should not
 be submitted as a claim of publication while the repository or DOI is pending.
 

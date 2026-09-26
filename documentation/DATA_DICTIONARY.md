@@ -1,6 +1,6 @@
 # Data dictionary
 
-Training data use a tab-separated file with the following column names. The
+Training data may be XLSX (first worksheet), CSV or tab-separated text with the following column names. The
 original target spelling `phenotyoe` is intentionally retained. Units follow the
 supplied calculator specification. The original study data dictionary remains
 authoritative when preparing new data.
@@ -12,7 +12,7 @@ authoritative when preparing new data.
 | Albumin | Albumin | g/L | Yes | Yes |
 | Platelet | Platelet count | 10^9/L | Yes | Yes |
 | Leukocyte | Leukocyte count | 10^9/L | Yes | Yes |
-| Age | Age | years | Yes | Yes |
+| Age | Age | years; adult cohort 18–84 | Yes | Yes |
 | BMI | Body mass index | kg/m² | Yes | Yes |
 | MAP | Mean arterial pressure | mmHg | Yes | Yes |
 | LVEDD | Left ventricular end-diastolic diameter | mm | Yes | No |

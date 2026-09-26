@@ -1,24 +1,11 @@
 {
+  "model_version": "2026-09-26-age-corrected",
   "python_syntax": "passed",
   "javascript_syntax": "passed",
   "json_parsing": "passed",
-  "relative_html_and_module_assets": "passed",
-  "service_worker_precache_assets": "passed",
-  "sex_labels": "0=Male, 1=Female",
-  "release_files": "No source cohort, credentials or private deployment files included.",
-  "live_browser_usability": "Not tested as part of this source-release preparation.",
-  "javascript_files_checked": [
-    "docs/model11/app.mjs",
-    "docs/model11/engine.mjs",
-    "docs/model11/model.mjs",
-    "docs/model11/sw.js",
-    "docs/model9/app.mjs",
-    "docs/model9/engine.mjs",
-    "docs/model9/model.mjs",
-    "docs/model9/sw.js",
-    "scripts/check_parity.mjs"
-  ],
-  "native_prediction_examples": "passed for both models",
-  "parity_examples_without_private_data": "passed for both models",
-  "browser_model_export": "byte-identical to the original browser models"
+  "native_browser_parity": "See release_parity.json",
+  "web_functional_checks": "See web_checks.json",
+  "training_reproduction": "See training_reproduction.json",
+  "raw_patient_files_in_release": false,
+  "graphical_browser_test": "Not performed; static-site preview unavailable in this environment."
 }

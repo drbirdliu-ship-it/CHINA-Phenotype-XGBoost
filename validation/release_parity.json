@@ -1,9 +1,9 @@
 {
   "model11": {
     "original_records": 3083,
-    "boundary_records": 2923,
+    "boundary_records": 2872,
     "synthetic_records": 1000,
-    "case_count": 7006,
+    "case_count": 6955,
     "class_mismatches": 0,
     "max_absolute_probability_error": 5.960464477539063e-08,
     "max_absolute_margin_error": 0,
@@ -11,9 +11,9 @@
   },
   "model9": {
     "original_records": 3083,
-    "boundary_records": 3184,
+    "boundary_records": 3118,
     "synthetic_records": 1000,
-    "case_count": 7267,
+    "case_count": 7201,
     "class_mismatches": 0,
     "max_absolute_probability_error": 5.960464477539063e-08,
     "max_absolute_margin_error": 0,

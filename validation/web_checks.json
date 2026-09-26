@@ -1,0 +1,20 @@
+{
+  "model_version": "2026-09-26-age-corrected",
+  "checks": {
+    "model11": {
+      "input_validation": "passed",
+      "ui_events": "passed",
+      "relative_assets": "passed",
+      "legacy_cache_migration": "passed",
+      "network_first_and_offline_current_version": "passed"
+    },
+    "model9": {
+      "input_validation": "passed",
+      "ui_events": "passed",
+      "relative_assets": "passed",
+      "legacy_cache_migration": "passed",
+      "network_first_and_offline_current_version": "passed"
+    }
+  },
+  "graphical_browser_test": "Not performed; functional tests use a DOM adapter and service-worker simulation."
+}

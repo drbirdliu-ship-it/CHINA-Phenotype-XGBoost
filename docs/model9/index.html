@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-model-version="2026-09-26-age-corrected">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%2338bdf8'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='serif' font-size='49' fill='%230c4a6e'%3E%CE%B1%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icon-180.png">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=2026-09-26-age-corrected">
 </head>
 <body>
   <div class="shell">
@@ -20,12 +20,13 @@
       <div class="identity"><div class="mark" aria-hidden="true">α</div><div><p class="eyebrow">CHINA PHENOTYPE</p><h1>9-predictor XGBoost calculator</h1></div></div>
       <div class="header-tools"><span class="research-tag">Research use</span><button class="quiet" id="install" type="button" hidden>Install app</button></div>
     </header>
+    <p class="version-note"><strong>Updated 26 September 2026</strong> · Retrained with corrected age data.<br>This version replaces the previous calculator.</p>
     <main class="workspace">
       <section class="panel input-panel" aria-labelledby="input-heading">
         <div class="panel-header"><h2 id="input-heading">Input parameters</h2><span>9 predictors</span></div>
         <form id="predictor-form" autocomplete="off">
           <fieldset><legend><span>01</span> Demographics &amp; body measurements</legend>
-            <div class="field"><label for="Age">Age</label><div class="entry"><input id="Age" name="Age" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter age" required aria-describedby="Age-unit"><span class="unit" id="Age-unit">years</span></div></div>
+            <div class="field"><label for="Age">Age</label><div class="entry"><input id="Age" name="Age" type="number" inputmode="decimal" min="18" step="any" placeholder="Enter age" required aria-describedby="Age-unit"><span class="unit" id="Age-unit">years</span></div></div>
             <div class="field"><label for="SEX">Sex</label><div class="entry"><select id="SEX" name="SEX" required><option value="">Select sex</option><option value="0">Male (0)</option><option value="1">Female (1)</option></select></div></div>
             <div class="field"><label for="BMI">Body mass index <small>BMI</small></label><div class="entry"><input id="BMI" name="BMI" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter BMI" required aria-describedby="BMI-unit"><span class="unit" id="BMI-unit">kg/m²</span></div></div>
           </fieldset>
@@ -62,18 +63,18 @@
         </section>
         <section class="panel model-panel" aria-labelledby="model-heading">
           <div class="panel-header secondary"><h2 id="model-heading">Model evaluation</h2><span>Internal hold-out test</span></div>
-          <div class="metrics"><div><strong><span id="accuracy-value" class="metric-value">66.9</span><span>%</span></strong><p>Test accuracy</p></div><div><strong id="test-records">617</strong><p>Test records</p></div><div><strong id="train-records">2,466</strong><p>Training records</p></div></div>
-          <details class="model-details"><summary>About this model</summary><div><p>XGBoost multiclass classification retrained with 9 predictors. The 3,083-record dataset was split into stratified training (80%) and test (20%) sets, with random seed 20260925.</p><p>Predictors: Glucose, PaCO₂, Albumin, Platelet, Leukocyte, Age, BMI, MAP and Sex. Sex is coded 0 = male and 1 = female.</p><p>The outcome is coded 1 = α, 2 = β, 3 = γ, and 4 = δ. These figures describe internal testing; external validation has not been provided.</p><p>Input units follow the supplied calculator specification. For research evaluation; clinical use requires further validation.</p></div></details>
+          <div class="metrics"><div><strong><span id="accuracy-value" class="metric-value">65.6</span><span>%</span></strong><p>Test accuracy</p></div><div><strong id="test-records">617</strong><p>Test records</p></div><div><strong id="train-records">2,466</strong><p>Training records</p></div></div>
+          <details class="model-details"><summary>About this model</summary><div><p>XGBoost multiclass classification retrained with 9 predictors. The 3,083-record dataset was split into stratified training (80%) and test (20%) sets, with random seed 20260925.</p><p>Predictors: Glucose, PaCO₂, Albumin, Platelet, Leukocyte, Age, BMI, MAP and Sex. Sex is coded 0 = male and 1 = female.</p><p>The outcome is coded 1 = α, 2 = β, 3 = γ, and 4 = δ. These figures describe internal testing of this classifier. External validation of these updated model weights has not been performed.</p><p>The corrected cohort includes adults aged 18–84 years. Both calculators use the same new test partition. The corrected worksheet order differs from the previous release, so the test membership also differs. The deployed models were fitted on training records only.</p><p>Sex is coded 0 = male and 1 = female.</p><p>Input units follow the supplied calculator specification. For research evaluation; clinical use requires further validation.</p></div></details>
         </section>
         <p class="privacy-note">Calculations run on your device. Entered values are not sent to a prediction server or saved by this app.</p>
         <details class="install-help"><summary>Use on your phone</summary><p>Open this page in your phone’s browser. To keep it as an app, choose “Add to Home Screen” in the share menu on iPhone, or “Install app” / “Add to Home screen” in the browser menu on Android, where supported.</p></details>
       </aside>
     </main>
-    <footer><span>CHINA Phenotype · 9-predictor research calculator</span><span>α &nbsp; β &nbsp; γ &nbsp; δ</span></footer>
+    <footer><span>CHINA Phenotype · 9-predictor research calculator</span><a href="https://github.com/drbirdliu-ship-it/CHINA-Phenotype-XGBoost" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></footer>
   </div>
   <noscript><p class="error">Please enable JavaScript to use the prediction model.</p></noscript>
   <script type="module">
-    import('./app.mjs').catch(() => {
+    import('./app.mjs?v=2026-09-26-age-corrected').catch(() => {
       document.getElementById('calculate-text').textContent = 'Model unavailable';
       const error = document.getElementById('error');
       error.textContent = 'The model could not load. Check your connection and reload this page.';

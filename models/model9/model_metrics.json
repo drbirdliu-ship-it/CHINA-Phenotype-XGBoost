@@ -1,5 +1,8 @@
 {
-  "sample_size": 3083,
+  "model_version": "2026-09-26-age-corrected",
+  "data_revision": "Age-corrected cohort, 2026-09-26",
+  "row_order": "As supplied in the corrected worksheet; not the previous release order.",
+  "deployment_fit": "Training partition only; test records excluded from model fitting.",
   "features": [
     "Glucose",
     "PaCO2",
@@ -10,10 +13,6 @@
     "BMI",
     "MAP",
     "SEX"
-  ],
-  "removed_features": [
-    "LVEDD",
-    "LVEF"
   ],
   "target_column": "phenotyoe",
   "class_mapping": {
@@ -26,78 +25,76 @@
     "0": "male",
     "1": "female"
   },
-  "class_counts": {
-    "1": 767,
-    "2": 734,
-    "3": 572,
-    "4": 1010
-  },
+  "sample_size": 3083,
   "train_size": 2466,
   "test_size": 617,
-  "test_accuracy": 0.6693679092382496,
+  "test_accuracy": 0.6564019448946515,
+  "test_balanced_accuracy": 0.6360476944579527,
+  "test_log_loss": 0.8613208212336176,
+  "test_macro_roc_auc_ovr": 0.8656540955822447,
   "classification_report": {
     "α": {
-      "precision": 0.7163120567375887,
-      "recall": 0.6558441558441559,
-      "f1-score": 0.6847457627118644,
+      "precision": 0.7005988023952096,
+      "recall": 0.7597402597402597,
+      "f1-score": 0.7289719626168224,
       "support": 154.0
     },
     "β": {
-      "precision": 0.5337423312883436,
-      "recall": 0.5918367346938775,
-      "f1-score": 0.5612903225806452,
+      "precision": 0.5285714285714286,
+      "recall": 0.5034013605442177,
+      "f1-score": 0.5156794425087108,
       "support": 147.0
     },
     "γ": {
-      "precision": 0.6666666666666666,
-      "recall": 0.5614035087719298,
-      "f1-score": 0.6095238095238096,
+      "precision": 0.6304347826086957,
+      "recall": 0.5087719298245614,
+      "f1-score": 0.5631067961165048,
       "support": 114.0
     },
     "δ": {
-      "precision": 0.7419354838709677,
-      "recall": 0.7970297029702971,
-      "f1-score": 0.7684964200477327,
+      "precision": 0.7155963302752294,
+      "recall": 0.7722772277227723,
+      "f1-score": 0.7428571428571429,
       "support": 202.0
     },
-    "accuracy": 0.6693679092382496,
+    "accuracy": 0.6564019448946515,
     "macro avg": {
-      "precision": 0.6646641346408917,
-      "recall": 0.6515285255700651,
-      "f1-score": 0.6560140787160129,
+      "precision": 0.6438003359626409,
+      "recall": 0.6360476944579527,
+      "f1-score": 0.6376538360247952,
       "support": 617.0
     },
     "weighted avg": {
-      "precision": 0.6720310327048795,
-      "recall": 0.6693679092382496,
-      "f1-score": 0.668853348480289,
+      "precision": 0.6515595453838735,
+      "recall": 0.6564019448946515,
+      "f1-score": 0.6520549074654708,
       "support": 617.0
     }
   },
   "confusion_matrix": [
     [
-      101,
-      29,
-      13,
-      11
+      117,
+      23,
+      6,
+      8
     ],
     [
       22,
-      87,
-      12,
-      26
+      74,
+      20,
+      31
     ],
     [
+      17,
+      16,
+      58,
+      23
+    ],
+    [
+      11,
+      27,
       8,
-      23,
-      64,
-      19
-    ],
-    [
-      10,
-      24,
-      7,
-      161
+      156
     ]
   ],
   "feature_ranges": {
@@ -122,7 +119,7 @@
       "max": 69.68
     },
     "Age": {
-      "min": 15.0,
+      "min": 18.0,
       "max": 84.0
     },
     "BMI": {
@@ -137,49 +134,6 @@
       "min": 0.0,
       "max": 1.0
     }
-  },
-  "feature_importance_gain": [
-    {
-      "feature": "Leukocyte",
-      "gain": 13.255504608154297
-    },
-    {
-      "feature": "SEX",
-      "gain": 7.934473991394043
-    },
-    {
-      "feature": "BMI",
-      "gain": 7.547253131866455
-    },
-    {
-      "feature": "MAP",
-      "gain": 7.4413299560546875
-    },
-    {
-      "feature": "Albumin",
-      "gain": 6.621227741241455
-    },
-    {
-      "feature": "Age",
-      "gain": 6.420965671539307
-    },
-    {
-      "feature": "Glucose",
-      "gain": 5.227878570556641
-    },
-    {
-      "feature": "PaCO2",
-      "gain": 4.116182804107666
-    },
-    {
-      "feature": "Platelet",
-      "gain": 3.8820414543151855
-    }
-  ],
-  "split": {
-    "test_fraction": 0.2,
-    "random_state": 20260925,
-    "stratified": true
   },
   "parameters": {
     "objective": "multi:softprob",
@@ -197,17 +151,12 @@
     "random_state": 20260925,
     "n_jobs": 2
   },
-  "source_data_sha256": "db6e6621a843d86c1b68a066678f25ffdbcdc39fc341574d5f1892b5c4f1d2aa",
-  "test_row_positions_sha256": "3abdb926e699606622b3356e4a1cf6b8b149ecdd130e09a37e1e7b43f50a9128",
-  "package_versions": {
-    "xgboost": "3.4.1",
-    "scikit-learn": "1.8.0",
-    "pandas": "2.2.3",
-    "numpy": "2.3.5"
+  "split": {
+    "test_fraction": 0.2,
+    "random_state": 20260925,
+    "stratified": true
   },
-  "same_test_set_comparison": {
-    "eleven_predictor_accuracy": 0.7747163695299838,
-    "nine_predictor_accuracy": 0.6693679092382496,
-    "same_test_records": 617
-  }
+  "source_data_sha256": "072a012a5e5978e20ecd5b7935c4fdbe5001a6e220b69332175d01a9a59cee4a",
+  "test_row_positions_sha256": "6a3b4f8e6f1378ad0228f36b94bd736b48367b615124603faf1b54349e09d290",
+  "model_sha256": "43847db51c7460031d0954855f3d78d1fc5b3c2109c3861f2c9469eb0693fceb"
 }

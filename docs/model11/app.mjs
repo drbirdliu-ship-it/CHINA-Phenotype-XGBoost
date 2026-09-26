@@ -1,4 +1,6 @@
-import { predict, validateInputs, FEATURES, LABELS } from './engine.mjs';
+import { predict, validateInputs, FEATURES, LABELS, METRICS } from './engine.mjs?v=2026-09-26-age-corrected';
+
+if (METRICS.version !== document.documentElement.dataset.modelVersion) throw new Error('Model version mismatch. Reload this page.');
 
 const form = document.getElementById('predictor-form');
 const byId = id => document.getElementById(id);
@@ -83,6 +85,9 @@ byId('example').addEventListener('click', () => {
   byId('input-status').textContent = 'Illustrative example loaded. Select Calculate to try the model.';
 });
 
+byId('accuracy-value').textContent = (METRICS.test_accuracy * 100).toFixed(1);
+byId('test-records').textContent = METRICS.test_size.toLocaleString('en-US');
+byId('train-records').textContent = METRICS.train_size.toLocaleString('en-US');
 byId('calculate').disabled = false;
 byId('calculate-text').textContent = 'Calculate phenotype';
 byId('example').disabled = false;
@@ -101,7 +106,7 @@ byId('install').addEventListener('click', async () => {
 });
 window.addEventListener('appinstalled', () => { byId('install').hidden = true; });
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
-  navigator.serviceWorker.register('./sw.js').catch(() => { /* Online inference remains available. */ });
+  navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).then(registration => registration.update()).catch(() => { /* Online inference remains available. */ });
 }
 
 const context = document.modelContext;
@@ -115,7 +120,7 @@ if (context?.registerTool) {
       description: 'Fill all eleven predictors and calculate the phenotype, updating the visible calculator. No input values are sent to a server.',
       inputSchema: {
         type: 'object',
-        properties: Object.fromEntries(FEATURES.map(name => [name, name === 'SEX' ? { type: 'number', enum: [0, 1], description: 'Sex: 0 = male, 1 = female.' } : { type: 'number', minimum: 0, ...(name === 'LVEF' ? { maximum: 100 } : {}) }])),
+        properties: Object.fromEntries(FEATURES.map(name => [name, name === 'SEX' ? { type: 'number', enum: [0, 1], description: 'Sex: 0 = male, 1 = female.' } : { type: 'number', minimum: name === 'Age' ? 18 : 0, ...(name === 'LVEF' ? { maximum: 100 } : {}) }])),
         required: FEATURES,
         additionalProperties: false,
       },

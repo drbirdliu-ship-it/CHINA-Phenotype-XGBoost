@@ -6,3 +6,5 @@
 @media(prefers-reduced-motion:reduce){.bar{transition:none}}
 
 .metrics strong>.metric-value{font-size:inherit;margin:0}
+
+.version-note{font-size:.875rem;color:var(--muted);border-left:3px solid var(--bright);padding:2px 0 2px 14px;margin:0 0 24px;line-height:1.6}.version-note strong{color:var(--ink)}.metrics strong>.metric-value{font-size:inherit;margin:0}footer a{color:var(--bright)}

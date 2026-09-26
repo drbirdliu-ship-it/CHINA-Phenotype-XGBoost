@@ -2,7 +2,7 @@
   "id": "./",
   "name": "CHINA Phenotype Predictor",
   "short_name": "Phenotype",
-  "description": "XGBoost research calculator for alpha, beta, gamma and delta phenotypes.",
+  "description": "11-predictor CHINA phenotype research calculator, retrained with corrected age data on 26 September 2026.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

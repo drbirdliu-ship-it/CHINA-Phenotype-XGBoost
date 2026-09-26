@@ -1,26 +1,37 @@
 # CHINA Phenotype: XGBoost models and web calculators
 
+**Current model revision: `2026-09-26-age-corrected`. Earlier model weights are superseded.**
+
 Source code and trained models for the 11-predictor and 9-predictor research models.
 GitHub repository: https://github.com/drbirdliu-ship-it/CHINA-Phenotype-XGBoost
 Author attribution, copyright-holder information, and license selection remain pending.
 The files in `publication/` are inactive templates, not finalized publication metadata.
 No Zenodo archive or DOI has been created. The proposed first formal release is `v1.0.0`.
 
+## Public calculators
+
+- [11-predictor calculator (purple)](https://china-phenotype-xgboost.christopherleenmu.chatgpt.site)
+- [9-predictor calculator (sky blue)](https://china-phenotype-9.christopherleenmu.chatgpt.site)
+
+These public URLs are retained and serve the corrected models. No sign-in is required.
+See [CHANGELOG.md](CHANGELOG.md) for the data correction and withdrawal of the previous weights.
+
 ## Included models
 
 | Model | Predictors | Training records | Test records | Internal test accuracy |
 | --- | --- | ---: | ---: | ---: |
-| `model11` | Glucose, PaCO2, Albumin, Platelet, Leukocyte, Age, BMI, MAP, LVEDD, LVEF, SEX | 2,466 | 617 | 0.7747163695 |
-| `model9` | Glucose, PaCO2, Albumin, Platelet, Leukocyte, Age, BMI, MAP, SEX | 2,466 | 617 | 0.6693679092 |
+| `model11` | Glucose, PaCO2, Albumin, Platelet, Leukocyte, Age, BMI, MAP, LVEDD, LVEF, SEX | 2,466 | 617 | 0.7649918963 |
+| `model9` | Glucose, PaCO2, Albumin, Platelet, Leukocyte, Age, BMI, MAP, SEX | 2,466 | 617 | 0.6564019449 |
 
 The outcome column is named `phenotyoe` in the source data and uses 1=α, 2=β,
-3=γ, 4=δ. SEX uses 0=male and 1=female. Both models used the same stratified
+3=γ, 4=δ. SEX uses 0=male and 1=female. The corrected cohort has an age range of 18–84 years. The worksheet was reordered;
+test membership therefore differs from the superseded release. Both new models used the same stratified
 80/20 split of 3,083 records, seed 20260925, and the same fixed hyperparameters.
 The nine-predictor model was fitted separately. It is not an eleven-predictor
 model with two fields hidden or imputed.
 
 All reported performance is internal hold-out performance. External validation
-has not been supplied. This software is intended for research evaluation.
+of these corrected classifier weights has not been performed. This software is intended for research evaluation.
 
 ## Run the calculators
 
@@ -61,10 +72,10 @@ Use `--input path/to/predictors.json` for another numerical predictor object.
 
 Training needs the original study data, which are **not distributed** in this
 code release. No data-access approval or data-sharing license is implied by
-the code release. With authorized access, retain the original row order:
+the code release. With authorized access, retain the corrected worksheet row order (first worksheet, without sorting):
 
 ```sh
-python scripts/train_models.py --data /path/to/study-data.txt --model both
+python scripts/train_models.py --data /path/to/corrected-study-data.xlsx --model both
 ```
 
 This writes new models and aggregate metrics under `retrained_models/` while
@@ -79,12 +90,13 @@ recorded in `validation/release_environment.json`.
 
 ```sh
 python scripts/validate_models.py
-python scripts/validate_models.py --data /path/to/study-data.txt --output validation/local_parity.json
+python scripts/validate_models.py --data /path/to/corrected-study-data.xlsx --output validation/local_parity.json
+node scripts/check_web.mjs
 ```
 
 The second command checks every source record, numerical split boundaries and
 1,000 synthetic inputs per model. It passes inputs to the local Node process
-through stdin and writes only aggregate results. The original and release
+through stdin and writes only aggregate results. The current numerical
 validation reports are in `validation/`.
 
 `scripts/export_models.py` recreates `docs/model11/model.mjs` and
@@ -97,7 +109,7 @@ accumulation before softmax. It does not call an LLM or external prediction API.
 | Location | Contents |
 | --- | --- |
 | `docs/` | Complete calculators and entry page; suitable for GitHub Pages |
-| `models/` | Both native model files and original aggregate evaluation reports |
+| `models/` | Both native model files and current aggregate evaluation reports |
 | `scripts/` | Training, native prediction, model export and parity validation |
 | `examples/` | Clearly labeled illustrative inputs |
 | `documentation/` | Data dictionary, reproducibility notes and publication steps |
@@ -106,8 +118,10 @@ accumulation before softmax. It does not call an LLM or external prediction API.
 | `SHA256SUMS.txt` | Checksums for the prepared release files |
 
 The public package excludes patient records, deployment credentials, host-specific
-project configuration, and the original private Git history. The two existing
-hosted calculators are not changed by preparing this package.
+project configuration, and the original private Git history. The two hosted calculators are updated from this revision. Old weights remain
+only in Git history for provenance and must not be used for the corrected analysis.
+Previously installed offline copies receive updates when reopened online.
+Check for the visible “Updated 26 September 2026” notice before use.
 
 ## License and citation
 
