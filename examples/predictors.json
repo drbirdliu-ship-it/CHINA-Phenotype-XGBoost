@@ -1,0 +1,27 @@
+{
+  "description": "Illustrative values; not an individual patient record.",
+  "model11": {
+    "Glucose": 6,
+    "PaCO2": 35,
+    "Albumin": 40,
+    "Platelet": 200,
+    "Leukocyte": 8.5,
+    "Age": 50,
+    "BMI": 25,
+    "MAP": 95,
+    "LVEDD": 50,
+    "LVEF": 62,
+    "SEX": 0
+  },
+  "model9": {
+    "Glucose": 6,
+    "PaCO2": 35,
+    "Albumin": 40,
+    "Platelet": 200,
+    "Leukocyte": 8.5,
+    "Age": 50,
+    "BMI": 25,
+    "MAP": 95,
+    "SEX": 0
+  }
+}

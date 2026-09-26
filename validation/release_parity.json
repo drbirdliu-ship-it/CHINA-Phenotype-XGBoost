@@ -1,0 +1,22 @@
+{
+  "model11": {
+    "original_records": 3083,
+    "boundary_records": 2923,
+    "synthetic_records": 1000,
+    "case_count": 7006,
+    "class_mismatches": 0,
+    "max_absolute_probability_error": 5.960464477539063e-08,
+    "max_absolute_margin_error": 0,
+    "probability_tolerance": 1e-06
+  },
+  "model9": {
+    "original_records": 3083,
+    "boundary_records": 3184,
+    "synthetic_records": 1000,
+    "case_count": 7267,
+    "class_mismatches": 0,
+    "max_absolute_probability_error": 5.960464477539063e-08,
+    "max_absolute_margin_error": 0,
+    "probability_tolerance": 1e-06
+  }
+}

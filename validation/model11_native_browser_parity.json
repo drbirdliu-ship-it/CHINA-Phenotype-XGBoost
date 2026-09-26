@@ -1,0 +1,30 @@
+{
+  "validated_at": "2026-09-25",
+  "original_records": 3083,
+  "boundary_records": 2923,
+  "synthetic_records": 1000,
+  "total_cases": 7006,
+  "class_mismatches": 0,
+  "max_absolute_probability_error": 5.960464477539063e-8,
+  "max_absolute_margin_error": 0,
+  "probability_tolerance": 0.000001,
+  "example_prediction": {
+    "predicted_code": 1,
+    "predicted_symbol": "α",
+    "probabilities": [
+      0.3435763120651245,
+      0.16540896892547607,
+      0.22848635911941528,
+      0.2625283896923065
+    ],
+    "margins": [
+      -0.38095253705978394,
+      -1.1119407415390015,
+      -0.788885235786438,
+      -0.6500025987625122
+    ],
+    "outside_observed_range": []
+  },
+  "browser_ui_qa": "unavailable for static site in this execution profile",
+  "webmcp_qa": "unavailable; optional feature detected"
+}

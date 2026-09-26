@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the released version."
+type: software
+title: "CHINA Phenotype: XGBoost models and web calculators"
+version: 1.0.0
+authors:
+  - family-names: "TO_BE_COMPLETED"
+    given-names: "TO_BE_COMPLETED"
+    affiliation: "TO_BE_COMPLETED"
+# Add the actual repository-code URL, date-released, approved license, and optional ORCID.
+# Add a DOI only when a real DOI has been reserved or issued; verify publication before submission.
+# Rename this completed file to CITATION.cff at the repository root before releasing.

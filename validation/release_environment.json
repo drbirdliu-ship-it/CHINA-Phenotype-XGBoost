@@ -1,0 +1,15 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux",
+  "architecture": "x86_64",
+  "node": "v24.19.0",
+  "packages": {
+    "xgboost": "3.4.1",
+    "scikit-learn": "1.8.0",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "joblib": "1.5.3",
+    "threadpoolctl": "3.6.0"
+  }
+}

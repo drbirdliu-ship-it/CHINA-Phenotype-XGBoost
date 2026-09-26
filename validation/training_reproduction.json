@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-09-26",
+  "scope": "Independent training from original ordered study data using the release script; aggregate output only.",
+  "models": {
+    "model11": {
+      "model_serialization_identical": true,
+      "reference_sha256": "00a8354ee4e3c2a1c47a12ab8378cae2335eea7772e0b68ec00c4d99fdd85b4c",
+      "reproduced_sha256": "00a8354ee4e3c2a1c47a12ab8378cae2335eea7772e0b68ec00c4d99fdd85b4c",
+      "test_accuracy": 0.7747163695299838,
+      "test_accuracy_identical": true,
+      "confusion_matrix_identical": true,
+      "test_size": 617,
+      "train_size": 2466,
+      "test_row_positions_sha256": "3abdb926e699606622b3356e4a1cf6b8b149ecdd130e09a37e1e7b43f50a9128"
+    },
+    "model9": {
+      "model_serialization_identical": true,
+      "reference_sha256": "d6569d6bab95006393dc49355b6aa62d82870343139bb55a95f41b840672e7e7",
+      "reproduced_sha256": "d6569d6bab95006393dc49355b6aa62d82870343139bb55a95f41b840672e7e7",
+      "test_accuracy": 0.6693679092382496,
+      "test_accuracy_identical": true,
+      "confusion_matrix_identical": true,
+      "test_size": 617,
+      "train_size": 2466,
+      "test_row_positions_sha256": "3abdb926e699606622b3356e4a1cf6b8b149ecdd130e09a37e1e7b43f50a9128"
+    }
+  },
+  "same_test_partition_for_both_models": true
+}

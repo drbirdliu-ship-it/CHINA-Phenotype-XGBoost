@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "CHINA Phenotype Predictor",
+  "short_name": "Phenotype",
+  "description": "XGBoost research calculator for alpha, beta, gamma and delta phenotypes.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090e19",
+  "theme_color": "#891fba",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

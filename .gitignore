@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+.DS_Store
+data/
+private_data/
+retrained_models/
+validation/local_parity.json

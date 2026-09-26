@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#891fba">
+  <meta name="description" content="An XGBoost research calculator for CHINA phenotypes: enter 11 predictors to estimate alpha, beta, gamma and delta class probabilities.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Phenotype">
+  <title>CHINA Phenotype | XGBoost Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23891fba'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='serif' font-size='49' fill='white'%3E%CE%B1%3C/text%3E%3C/svg%3E">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="page-header">
+      <div class="identity"><div class="mark" aria-hidden="true">α</div><div><p class="eyebrow">CHINA PHENOTYPE</p><h1>XGBoost calculator</h1></div></div>
+      <div class="header-tools"><span class="research-tag">Research use</span><button class="quiet" id="install" type="button" hidden>Install app</button></div>
+    </header>
+    <main class="workspace">
+      <section class="panel input-panel" aria-labelledby="input-heading">
+        <div class="panel-header"><h2 id="input-heading">Input parameters</h2><span>11 predictors</span></div>
+        <form id="predictor-form" autocomplete="off">
+          <fieldset><legend><span>01</span> Demographics &amp; body measurements</legend>
+            <div class="field"><label for="Age">Age</label><div class="entry"><input id="Age" name="Age" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter age" required aria-describedby="Age-unit"><span class="unit" id="Age-unit">years</span></div></div>
+            <div class="field"><label for="SEX">Sex</label><div class="entry"><select id="SEX" name="SEX" required><option value="">Select sex</option><option value="0">Male (0)</option><option value="1">Female (1)</option></select></div></div>
+            <div class="field"><label for="BMI">Body mass index <small>BMI</small></label><div class="entry"><input id="BMI" name="BMI" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter BMI" required aria-describedby="BMI-unit"><span class="unit" id="BMI-unit">kg/m²</span></div></div>
+          </fieldset>
+          <fieldset><legend><span>02</span> Biomarkers</legend>
+            <div class="field"><label for="Albumin">Albumin</label><div class="entry"><input id="Albumin" name="Albumin" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="Albumin-unit"><span class="unit" id="Albumin-unit">g/L</span></div></div>
+            <div class="field"><label for="Glucose">Glucose</label><div class="entry"><input id="Glucose" name="Glucose" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="Glucose-unit"><span class="unit" id="Glucose-unit">mmol/L</span></div></div>
+            <div class="field"><label for="PaCO2">PaCO₂</label><div class="entry"><input id="PaCO2" name="PaCO2" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="PaCO2-unit"><span class="unit" id="PaCO2-unit">mmHg</span></div></div>
+            <div class="field"><label for="Leukocyte">Leukocyte count</label><div class="entry"><input id="Leukocyte" name="Leukocyte" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="Leukocyte-unit"><span class="unit" id="Leukocyte-unit">10⁹/L</span></div></div>
+            <div class="field"><label for="Platelet">Platelet count</label><div class="entry"><input id="Platelet" name="Platelet" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="Platelet-unit"><span class="unit" id="Platelet-unit">10⁹/L</span></div></div>
+          </fieldset>
+          <fieldset><legend><span>03</span> Clinical &amp; echocardiographic measures</legend>
+            <div class="field"><label for="MAP">Mean arterial pressure <small>MAP</small></label><div class="entry"><input id="MAP" name="MAP" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="MAP-unit"><span class="unit" id="MAP-unit">mmHg</span></div></div>
+            <div class="field"><label for="LVEDD">LV end-diastolic diameter <small>LVEDD</small></label><div class="entry"><input id="LVEDD" name="LVEDD" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter value" required aria-describedby="LVEDD-unit"><span class="unit" id="LVEDD-unit">mm</span></div></div>
+            <div class="field"><label for="LVEF">LV ejection fraction <small>LVEF</small></label><div class="entry"><input id="LVEF" name="LVEF" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="Enter value" required aria-describedby="LVEF-unit"><span class="unit" id="LVEF-unit">%</span></div></div>
+          </fieldset>
+          <div class="form-actions"><button class="quiet" id="example" type="button" disabled>Load example</button><button class="quiet muted" type="reset">Clear values</button></div>
+          <p class="input-status" id="input-status" aria-live="polite">Enter all 11 values, or load an illustrative example.</p>
+        </form>
+      </section>
+      <aside class="results-column" aria-label="Prediction results">
+        <button id="calculate" type="submit" form="predictor-form" class="calculate" disabled><span aria-hidden="true">✧</span><span id="calculate-text">Loading model…</span></button>
+        <p class="error" id="error" role="alert" hidden></p>
+        <section class="panel result-panel" aria-labelledby="result-heading">
+          <div class="panel-header"><h2 id="result-heading">Predicted phenotype</h2><span id="result-status">Awaiting input</span></div>
+          <div class="result-content">
+            <div id="result-summary" class="result-summary" aria-live="polite" aria-atomic="true"><div class="result-symbol" id="result-symbol">—</div><div><p class="summary-label" id="summary-label">Ready when you are</p><p class="summary-detail" id="summary-detail">Complete the inputs and select Calculate.</p></div></div>
+            <div class="phenotype-grid" id="phenotype-grid">
+              <div class="phenotype-card" data-code="1"><div class="card-top"><span class="greek">α</span><span class="code">Code 1</span></div><div class="card-bottom"><span class="class-name">Alpha</span><span class="probability">—</span></div><div class="track"><div class="bar"></div></div></div>
+              <div class="phenotype-card" data-code="2"><div class="card-top"><span class="greek">β</span><span class="code">Code 2</span></div><div class="card-bottom"><span class="class-name">Beta</span><span class="probability">—</span></div><div class="track"><div class="bar"></div></div></div>
+              <div class="phenotype-card" data-code="3"><div class="card-top"><span class="greek">γ</span><span class="code">Code 3</span></div><div class="card-bottom"><span class="class-name">Gamma</span><span class="probability">—</span></div><div class="track"><div class="bar"></div></div></div>
+              <div class="phenotype-card" data-code="4"><div class="card-top"><span class="greek">δ</span><span class="code">Code 4</span></div><div class="card-bottom"><span class="class-name">Delta</span><span class="probability">—</span></div><div class="track"><div class="bar"></div></div></div>
+            </div>
+            <p class="result-note">The class with the highest model probability is selected.</p>
+            <p id="range-note" class="range-note" hidden></p>
+          </div>
+        </section>
+        <section class="panel model-panel" aria-labelledby="model-heading">
+          <div class="panel-header secondary"><h2 id="model-heading">Model evaluation</h2><span>Internal hold-out test</span></div>
+          <div class="metrics"><div><strong>77.5<span>%</span></strong><p>Test accuracy</p></div><div><strong>617</strong><p>Test records</p></div><div><strong>2,466</strong><p>Training records</p></div></div>
+          <details class="model-details"><summary>About this model</summary><div><p>XGBoost multiclass classification using 11 predictors. The 3,083-record dataset was split into stratified training (80%) and test (20%) sets, with random seed 20260925.</p><p>The outcome is coded 1 = α, 2 = β, 3 = γ, and 4 = δ. These figures describe internal testing; external validation has not been provided.</p><p>Input units follow the supplied calculator specification. For research evaluation; clinical use requires further validation.</p></div></details>
+        </section>
+        <p class="privacy-note">Calculations run on your device. Entered values are not sent to a prediction server or saved by this app.</p>
+        <details class="install-help"><summary>Use on your phone</summary><p>Open this page in your phone’s browser. To keep it as an app, choose “Add to Home Screen” in the share menu on iPhone, or “Install app” / “Add to Home screen” in the browser menu on Android, where supported.</p></details>
+      </aside>
+    </main>
+    <footer><span>CHINA Phenotype · Research calculator</span><span>α &nbsp; β &nbsp; γ &nbsp; δ</span></footer>
+  </div>
+  <noscript><p class="error">Please enable JavaScript to use the prediction model.</p></noscript>
+  <script type="module">
+    import('./app.mjs').catch(() => {
+      document.getElementById('calculate-text').textContent = 'Model unavailable';
+      const error = document.getElementById('error');
+      error.textContent = 'The model could not load. Check your connection and reload this page.';
+      error.hidden = false;
+    });
+  </script>
+</body>
+</html>

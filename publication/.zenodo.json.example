@@ -1,0 +1,10 @@
+{
+  "title": "CHINA Phenotype: XGBoost models and web calculators",
+  "upload_type": "software",
+  "description": "Source code, trained models, evaluation summaries and browser calculators for the 11-predictor and 9-predictor XGBoost phenotype models. Patient-level source data are not distributed.",
+  "version": "1.0.0",
+  "access_right": "open",
+  "license": "TO_BE_CONFIRMED",
+  "creators": [{"name": "TO_BE_COMPLETED", "affiliation": "TO_BE_COMPLETED"}],
+  "keywords": ["phenotype", "XGBoost", "prediction model", "research software"]
+}

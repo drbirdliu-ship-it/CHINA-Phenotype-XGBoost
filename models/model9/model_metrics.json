@@ -1,0 +1,213 @@
+{
+  "sample_size": 3083,
+  "features": [
+    "Glucose",
+    "PaCO2",
+    "Albumin",
+    "Platelet",
+    "Leukocyte",
+    "Age",
+    "BMI",
+    "MAP",
+    "SEX"
+  ],
+  "removed_features": [
+    "LVEDD",
+    "LVEF"
+  ],
+  "target_column": "phenotyoe",
+  "class_mapping": {
+    "1": "α",
+    "2": "β",
+    "3": "γ",
+    "4": "δ"
+  },
+  "sex_mapping": {
+    "0": "male",
+    "1": "female"
+  },
+  "class_counts": {
+    "1": 767,
+    "2": 734,
+    "3": 572,
+    "4": 1010
+  },
+  "train_size": 2466,
+  "test_size": 617,
+  "test_accuracy": 0.6693679092382496,
+  "classification_report": {
+    "α": {
+      "precision": 0.7163120567375887,
+      "recall": 0.6558441558441559,
+      "f1-score": 0.6847457627118644,
+      "support": 154.0
+    },
+    "β": {
+      "precision": 0.5337423312883436,
+      "recall": 0.5918367346938775,
+      "f1-score": 0.5612903225806452,
+      "support": 147.0
+    },
+    "γ": {
+      "precision": 0.6666666666666666,
+      "recall": 0.5614035087719298,
+      "f1-score": 0.6095238095238096,
+      "support": 114.0
+    },
+    "δ": {
+      "precision": 0.7419354838709677,
+      "recall": 0.7970297029702971,
+      "f1-score": 0.7684964200477327,
+      "support": 202.0
+    },
+    "accuracy": 0.6693679092382496,
+    "macro avg": {
+      "precision": 0.6646641346408917,
+      "recall": 0.6515285255700651,
+      "f1-score": 0.6560140787160129,
+      "support": 617.0
+    },
+    "weighted avg": {
+      "precision": 0.6720310327048795,
+      "recall": 0.6693679092382496,
+      "f1-score": 0.668853348480289,
+      "support": 617.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      101,
+      29,
+      13,
+      11
+    ],
+    [
+      22,
+      87,
+      12,
+      26
+    ],
+    [
+      8,
+      23,
+      64,
+      19
+    ],
+    [
+      10,
+      24,
+      7,
+      161
+    ]
+  ],
+  "feature_ranges": {
+    "Glucose": {
+      "min": 2.2,
+      "max": 43.66
+    },
+    "PaCO2": {
+      "min": 13.2,
+      "max": 98.1
+    },
+    "Albumin": {
+      "min": 12.2,
+      "max": 70.8
+    },
+    "Platelet": {
+      "min": 14.0,
+      "max": 1168.0
+    },
+    "Leukocyte": {
+      "min": 2.7,
+      "max": 69.68
+    },
+    "Age": {
+      "min": 15.0,
+      "max": 84.0
+    },
+    "BMI": {
+      "min": 12.60930347,
+      "max": 66.40625
+    },
+    "MAP": {
+      "min": 26.67,
+      "max": 174.0
+    },
+    "SEX": {
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "feature_importance_gain": [
+    {
+      "feature": "Leukocyte",
+      "gain": 13.255504608154297
+    },
+    {
+      "feature": "SEX",
+      "gain": 7.934473991394043
+    },
+    {
+      "feature": "BMI",
+      "gain": 7.547253131866455
+    },
+    {
+      "feature": "MAP",
+      "gain": 7.4413299560546875
+    },
+    {
+      "feature": "Albumin",
+      "gain": 6.621227741241455
+    },
+    {
+      "feature": "Age",
+      "gain": 6.420965671539307
+    },
+    {
+      "feature": "Glucose",
+      "gain": 5.227878570556641
+    },
+    {
+      "feature": "PaCO2",
+      "gain": 4.116182804107666
+    },
+    {
+      "feature": "Platelet",
+      "gain": 3.8820414543151855
+    }
+  ],
+  "split": {
+    "test_fraction": 0.2,
+    "random_state": 20260925,
+    "stratified": true
+  },
+  "parameters": {
+    "objective": "multi:softprob",
+    "num_class": 4,
+    "n_estimators": 180,
+    "max_depth": 3,
+    "learning_rate": 0.045,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 2,
+    "reg_lambda": 1.5,
+    "reg_alpha": 0.05,
+    "eval_metric": "mlogloss",
+    "base_score": 0,
+    "random_state": 20260925,
+    "n_jobs": 2
+  },
+  "source_data_sha256": "db6e6621a843d86c1b68a066678f25ffdbcdc39fc341574d5f1892b5c4f1d2aa",
+  "test_row_positions_sha256": "3abdb926e699606622b3356e4a1cf6b8b149ecdd130e09a37e1e7b43f50a9128",
+  "package_versions": {
+    "xgboost": "3.4.1",
+    "scikit-learn": "1.8.0",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5"
+  },
+  "same_test_set_comparison": {
+    "eleven_predictor_accuracy": 0.7747163695299838,
+    "nine_predictor_accuracy": 0.6693679092382496,
+    "same_test_records": 617
+  }
+}
